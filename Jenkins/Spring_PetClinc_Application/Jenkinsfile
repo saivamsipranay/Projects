@@ -15,8 +15,10 @@ pipeline {
             }
         }
         stage('test') {
-            junit '**/surefire-reports/TEST-*.xml'
-            archiveArtifacts artifacts: '**/target/*.war', followSynlinks: false
+            steps {
+                junit '**/surefire-reports/TEST-*.xml'
+                archiveArtifacts artifacts: '**/target/*.war', followSynlinks: false
+            }
         }
     }
 }
