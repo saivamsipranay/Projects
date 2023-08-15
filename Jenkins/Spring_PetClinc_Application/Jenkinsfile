@@ -14,5 +14,9 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('test') {
+            junit '**/surefire-reports/TEST-*.xml'
+            archiveArtifacts artifacts: '**/target/*.war', followSynlinks: false
+        }
     }
 }
