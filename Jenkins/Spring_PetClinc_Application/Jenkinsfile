@@ -4,23 +4,23 @@ pipeline {
         pollSCM('* * * * *')
     }
     stages {
-        stage('git') {
+        stage('Version Control') {
             steps {
                 git url: 'https://github.com/saivamsipranay/spring-petclinic.git', branch: "main"
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
                 sh 'mvn package'
             }
         }
-        stage('test') {
+        stage('Test and Artifacts') {
             steps {
                 junit '**/surefire-reports/TEST-*.xml'
                 archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
             }
         }
-        stage('deploy') {
+        stage('Deploy') {
             steps {
                 sh "java -jar target/*.jar"
             }
