@@ -20,5 +20,10 @@ pipeline {
                 archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
             }
         }
+        stage('deploy') {
+            steps {
+                sh "java -jar target/*.jar"
+            }
+        }
     }
 }
