@@ -14,7 +14,7 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage('Test and Artifacts') {
+        stage('Test and Artifact') {
             steps {
                 junit '**/surefire-reports/TEST-*.xml'
                 archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
@@ -25,5 +25,20 @@ pipeline {
                 sh "java -jar target/*.jar"
             }
         }
+    }
+    post {
+        success {
+            mail subject: "jenkins build of ${JOB_NAME} with id ${BUILD_NUMBER} is successfull", 
+                 body: "use this url ${BUILD_URL} for more info.",
+                 from: 'devops_pipeline.com',
+                 to: "team-all@svp.com"
+        }
+        failure {
+            mail subject: "jenkins build of ${JOB_NAME} with id ${BUILD_NUMBER} is failed",
+                body: "use this url ${BUILD_URL} for more info.",
+                from: 'devops_pipeline.com',
+                to: "${GIT_COMMITTER_EMAIL}"
+        }
+
     }
 }
