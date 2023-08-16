@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'jdk_17'}
+    agent { label 'Dotnet_6'}
     triggers {pollSCM('* * * * *')} 
     stages {
         stage('vcs') {
