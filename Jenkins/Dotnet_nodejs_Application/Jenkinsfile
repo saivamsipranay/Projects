@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    triggers {pollSCM('* * * * *')} 
+    stages {
+        stage('vcs') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/khajadevopsmarch23/MusicStore.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'dotnet restore ./MusicStore/MusicStore.csproj && dotnet build ./MusicStore/MusicStore.csproj'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'dotnet test ./MusicStore/MusicStore.csproj
+            }
+        }
+    }
+}
