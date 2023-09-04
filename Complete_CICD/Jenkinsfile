@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build and Test') {
             steps{
-            sh 'cd Projects/Complete_CICD && mvn clean package'
+            sh 'cd Complete_CICD && mvn clean package'
             junit '**/surefire-reports/TEST-*.xml'
             archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
             }
