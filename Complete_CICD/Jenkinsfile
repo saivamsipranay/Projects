@@ -1,0 +1,15 @@
+pipeline {
+    agent { label '' }
+    stages {
+        stage('Git checkout') {
+            steps {
+                sh 'echo passed'
+            }
+        }
+        stage('Build and Test') {
+            sh 'cd Projects/Complete_CICD && mvn clean package'
+            junit '**/surefire-reports/TEST-*.xml'
+            archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
+        }
+    }
+}
