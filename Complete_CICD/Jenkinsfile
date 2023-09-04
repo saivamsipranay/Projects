@@ -11,6 +11,20 @@ pipeline {
                 sh 'cd Complete_CICD && mvn clean package'
                 archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
             }
+            post {
+                success {
+                    mail subject: "jenkins Build of ${JOB_NAME} with id ${BUILD_NUMBER} is successfull",
+                         body: "use this url ${BUILD_URL} for more info.",
+                         from: 'my_devops.com',
+                         to: "team-all@svp.com"
+                }
+                failure {
+                    mail subject: "jenkins Build of ${JOB_NAME} with id ${BUILD_NUMBER} is failed",
+                         body: "use this url ${BUILD_URL} for more info.",
+                         from: 'my_devops.com',
+                         to: "${GIT_COMMITTER_EMAIL}"
+                }
+            }
         }
         stage('Static code Analysis') {
             environment {
