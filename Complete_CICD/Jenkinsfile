@@ -22,6 +22,11 @@ pipeline {
                 }
             }
         }
+        stage('Build and Push Docker Image') {
+            environment {
+                
+            }
+        }
     }
     post {
         success {
