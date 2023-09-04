@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'JENKINS_SLAVE' }
     stages {
-        stage('Git checkout') {
+        stage('Git Checkout') {
             steps {
                 sh 'echo passed'
             }
