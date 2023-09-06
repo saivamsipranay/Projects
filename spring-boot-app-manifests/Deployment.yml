@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: 	Deployment
+metadata: 
+  name: spring_boot_app
+  labels: 
+    app: spring_boot_app
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: spring_boot_app
+  template: 
+    metadata: 
+      name: spring_boot_app
+      labels: 
+        app: spring_boot_app
+    spec: 
+      containers: 
+        - name: spring_boot_app
+          image: saivamsipranay/complite_cicd:42
+          ports:
+            - containerPort: 8080
