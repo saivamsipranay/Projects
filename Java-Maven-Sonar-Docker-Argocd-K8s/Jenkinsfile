@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh "cd Complete_CICD && docker build -t ${DOCKER_IMAGE} ."
+                    sh "cd Java-Maven-Sonar-Docker-Argocd-K8s && docker build -t ${DOCKER_IMAGE} ."
                 }
             }
         }
