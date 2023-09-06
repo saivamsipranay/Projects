@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build and Test') {
             steps{
-                sh 'cd Complete_CICD && mvn clean package'
+                sh 'cd Java-Maven-Sonar-Docker-Argocd-K8s && mvn clean package'
                 archiveArtifacts artifacts: '**/target/*.jar', followSymlinks: false
             }
         }
